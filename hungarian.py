@@ -1,5 +1,4 @@
 import itertools
-#from tkinter.ttk import Style
 import pandas as pd
 import numpy as np
 from imblearn.over_sampling import SMOTE
@@ -8,9 +7,18 @@ import streamlit as st
 import time
 import pickle
 
+"""
+Buka dan Baca File: Membuka file "hungarian.data" dalam mode baca dan mengonversi setiap baris 
+teks menjadi elemen dalam daftar lines. Fungsi strip() menghapus karakter ' ' di awal dan akhir setiap baris.
+"""
 with open("data/hungarian.data", encoding='Latin1') as file:
   lines = [line.strip() for line in file]
 
+"""
+Iterasi Melalui Data dengan takewhile: 
+Menggunakan itertools.takewhile untuk membaca data berbaris-baris dan menggabungkan setiap 10 baris 
+menjadi satu string. Ini dilakukan untuk setiap set data yang memiliki panjang 76 karakter.
+"""
 data = itertools.takewhile(
   lambda x: len(x) == 76,
   (' '.join(lines[i:(i + 10)]).split() for i in range(0, len(lines), 10))
