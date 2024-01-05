@@ -16,18 +16,17 @@ with open("data/hungarian.data", encoding='Latin1') as file:
 #Iterasi Melalui Data dengan takewhile: 
 #Menggunakan itertools.takewhile untuk membaca data berbaris-baris dan menggabungkan setiap 10 baris 
 #menjadi satu string. Ini dilakukan untuk setiap set data yang memiliki panjang 76 karakter.
+
 data = itertools.takewhile(
   lambda x: len(x) == 76,
   (' '.join(lines[i:(i + 10)]).split() for i in range(0, len(lines), 10))
 )
 
-"""
-Membuat dan Manipulasi DataFrame: 
-Membuat DataFrame dari data yang dihasilkan sebelumnya dengan menggunakan pd.DataFrame.from_records.
-Data dimanipulasi dengan menghapus kolom terakhir, kolom pertama, dan mengonversi seluruh DataFrame 
-menjadi tipe data float. Kemudian ganti Nilai -9.0 dengan NaN: Mengganti setiap nilai -9.0 
-dalam DataFrame dengan NaN (Not a Number).
-"""
+#Membuat dan Manipulasi DataFrame: 
+#Membuat DataFrame dari data yang dihasilkan sebelumnya dengan menggunakan pd.DataFrame.from_records.
+#Data dimanipulasi dengan menghapus kolom terakhir, kolom pertama, dan mengonversi seluruh DataFrame 
+#menjadi tipe data float. Kemudian ganti Nilai -9.0 dengan NaN: Mengganti setiap nilai -9.0 
+#dalam DataFrame dengan NaN (Not a Number).
 
 df = pd.DataFrame.from_records(data)
 df = df.iloc[:, :-1]
@@ -35,15 +34,13 @@ df = df.drop(df.columns[0], axis=1)
 df = df.astype(float)
 df.replace(-9.0, np.NaN, inplace=True)
 
-"""
-pilih kolom yang akan dianalisis lebih lanjut
-"""
+#pilih kolom yang akan dianalisis lebih lanjut
+
 df_selected = df.iloc[:, [1, 2, 7, 8, 10, 14, 17, 30, 36, 38, 39, 42, 49, 56]]
 
 
-"""
-Lakukan pemetaan dan penamaan ulang kolom
-"""
+#Lakukan pemetaan dan penamaan ulang kolom
+
 column_mapping = {
   2: 'age',
   3: 'sex',
