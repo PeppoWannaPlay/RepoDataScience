@@ -13,11 +13,9 @@ import pickle
 with open("data/hungarian.data", encoding='Latin1') as file:
   lines = [line.strip() for line in file]
 
-"""
-Iterasi Melalui Data dengan takewhile: 
-Menggunakan itertools.takewhile untuk membaca data berbaris-baris dan menggabungkan setiap 10 baris 
-menjadi satu string. Ini dilakukan untuk setiap set data yang memiliki panjang 76 karakter.
-"""
+#Iterasi Melalui Data dengan takewhile: 
+#Menggunakan itertools.takewhile untuk membaca data berbaris-baris dan menggabungkan setiap 10 baris 
+#menjadi satu string. Ini dilakukan untuk setiap set data yang memiliki panjang 76 karakter.
 data = itertools.takewhile(
   lambda x: len(x) == 76,
   (' '.join(lines[i:(i + 10)]).split() for i in range(0, len(lines), 10))
