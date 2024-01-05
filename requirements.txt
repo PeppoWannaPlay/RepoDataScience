@@ -4,3 +4,4 @@ matplotlib
 numpy
 pandas
 streamlit
+xgboost==2.0.2
