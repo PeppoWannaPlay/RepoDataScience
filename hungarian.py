@@ -84,9 +84,7 @@ meanthalach = round(meanthalach.mean())
 meanexang = round(meanexang.mean())
 meanRestCG = round(meanRestCG.mean())
 
-"""
-Isi value yang kosong dengan Mean
-"""
+#Isi value yang kosong dengan Mean data
 
 fill_values = {
   'trestbps': meanTBPS,
@@ -119,9 +117,8 @@ df_final['target'] = y
 
 # STREAMLIT
 
-"""
-Mengatur Style tampilan streamlit
-"""
+#Mengatur Style tampilan streamlit
+
 st.set_page_config(
   page_title = "Hungarian Heart Disease",
   page_icon = ":heart:"
@@ -161,9 +158,7 @@ st.write("")
 
 tab1, tab2 = st.tabs(["Single-predict", "Multi-predict"])
 
-"""
-Mengatur konten Tab 1
-"""
+#Mengatur konten Tab 1 (Single Prediction)
 with tab1:
   st.sidebar.header("**User Input** Sidebar")
 
@@ -305,9 +300,8 @@ with tab1:
   st.subheader("Prediction:")
   st.subheader(result)
 
-"""
-Mengatur konten Tab 2
-"""
+#Mengatur konten Tab 2 (Multiple Prediction)
+
 
 with tab2:
   st.header("Predict multiple data:")
