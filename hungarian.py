@@ -24,16 +24,29 @@ data = itertools.takewhile(
   (' '.join(lines[i:(i + 10)]).split() for i in range(0, len(lines), 10))
 )
 
-df = pd.DataFrame.from_records(data)
+"""
+Membuat dan Manipulasi DataFrame: 
+Membuat DataFrame dari data yang dihasilkan sebelumnya dengan menggunakan pd.DataFrame.from_records.
+Data dimanipulasi dengan menghapus kolom terakhir, kolom pertama, dan mengonversi seluruh DataFrame 
+menjadi tipe data float. Kemudian ganti Nilai -9.0 dengan NaN: Mengganti setiap nilai -9.0 
+dalam DataFrame dengan NaN (Not a Number).
+"""
 
+df = pd.DataFrame.from_records(data)
 df = df.iloc[:, :-1]
 df = df.drop(df.columns[0], axis=1)
 df = df.astype(float)
-
 df.replace(-9.0, np.NaN, inplace=True)
 
+"""
+pilih kolom yang akan dianalisis lebih lanjut
+"""
 df_selected = df.iloc[:, [1, 2, 7, 8, 10, 14, 17, 30, 36, 38, 39, 42, 49, 56]]
 
+
+"""
+Lakukan pemetaan dan penamaan ulang kolom
+"""
 column_mapping = {
   2: 'age',
   3: 'sex',
@@ -76,6 +89,10 @@ meanfbs = round(meanfbs.mean())
 meanthalach = round(meanthalach.mean())
 meanexang = round(meanexang.mean())
 meanRestCG = round(meanRestCG.mean())
+
+"""
+Isi value yang kosong dengan Mean
+"""
 
 fill_values = {
   'trestbps': meanTBPS,
