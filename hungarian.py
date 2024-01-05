@@ -124,6 +124,10 @@ df_final['target'] = y
 # ========================================================================================================================================================================================
 
 # STREAMLIT
+
+"""
+Mengatur Style tampilan streamlit
+"""
 st.set_page_config(
   page_title = "Hungarian Heart Disease",
   page_icon = ":heart:"
@@ -163,6 +167,9 @@ st.write("")
 
 tab1, tab2 = st.tabs(["Single-predict", "Multi-predict"])
 
+"""
+Mengatur konten Tab 1
+"""
 with tab1:
   st.sidebar.header("**User Input** Sidebar")
 
@@ -303,6 +310,10 @@ with tab1:
   st.write("")
   st.subheader("Prediction:")
   st.subheader(result)
+
+"""
+Mengatur konten Tab 2
+"""
 
 with tab2:
   st.header("Predict multiple data:")
