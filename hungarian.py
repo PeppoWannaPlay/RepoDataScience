@@ -7,10 +7,9 @@ import streamlit as st
 import time
 import pickle
 
-"""
-Buka dan Baca File: Membuka file "hungarian.data" dalam mode baca dan mengonversi setiap baris 
-teks menjadi elemen dalam daftar lines. Fungsi strip() menghapus karakter ' ' di awal dan akhir setiap baris.
-"""
+#Buka dan Baca File: Membuka file "hungarian.data" dalam mode baca dan mengonversi setiap baris 
+#teks menjadi elemen dalam daftar lines. Fungsi strip() menghapus karakter ' ' di awal dan akhir setiap baris.
+
 with open("data/hungarian.data", encoding='Latin1') as file:
   lines = [line.strip() for line in file]
 
