@@ -60,9 +60,13 @@ column_mapping = {
 
 df_selected.rename(columns=column_mapping, inplace=True)
 
+
+#Hilangkan fitur data yang anggotanya mayoritas bernilai null
 columns_to_drop = ['ca', 'slope','thal']
 df_selected = df_selected.drop(columns_to_drop, axis=1)
 
+
+#Cari nilai rata rata fitur, hal ini dilakukan untuk mengisi null
 meanTBPS = df_selected['trestbps'].dropna()
 meanChol = df_selected['chol'].dropna()
 meanfbs = df_selected['fbs'].dropna()
@@ -96,16 +100,22 @@ fill_values = {
 }
 
 df_clean = df_selected.fillna(value=fill_values)
+
+#pengecekan dan penghapusan data duplikat
 df_clean.drop_duplicates(inplace=True)
 
 X = df_clean.drop("target", axis=1)
 y = df_clean['target']
 
+
+
+#Lakukan oversampling agar data balance
 smote = SMOTE(random_state=42)
 X, y = smote.fit_resample(X, y)
 
 model = pickle.load(open("model/xgb_model.pkl", 'rb'))
 
+#prediksi
 y_pred = model.predict(X)
 accuracy = accuracy_score(y, y_pred)
 accuracy = round((accuracy * 100), 2)
